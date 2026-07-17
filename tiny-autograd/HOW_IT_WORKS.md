@@ -64,7 +64,7 @@ h.backward()
 
 The above expression creates the following computational graph.
 
-![Computational Graph](tiny-autograd\Images\d1.png)
+![Computational Graph](Images\d1.png)
 
 Every node in the graph is represented by a `Value` object.
 
