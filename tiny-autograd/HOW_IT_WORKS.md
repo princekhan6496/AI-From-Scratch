@@ -8,6 +8,8 @@ Instead of relying on existing deep learning frameworks, this project implements
 
 The engine supports scalar automatic differentiation and demonstrates how gradients are computed through arbitrary mathematical expressions. Although intentionally lightweight, it follows the same core principles used in modern frameworks such as **PyTorch**, **TensorFlow**, and **JAX**.
 
+The implementation reflects my understanding of these concepts through independent coding and experimentation, with ideas learned from educational resources on deep learning and automatic differentiation.
+
 ---
 
 # Features
