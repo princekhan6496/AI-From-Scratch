@@ -64,15 +64,7 @@ Embedding Matrix
 Result
 
 ```
-[0 0 1 0]
-
-×
-
-Embedding Matrix
-
-=
-
-[-0.7 2.1]
+[0 0 1 0] × Embedding Matrix = [-0.7 2.1]
 ```
 
 Since a one-hot vector contains only a single `1`, this multiplication simply selects one row of the embedding matrix.
