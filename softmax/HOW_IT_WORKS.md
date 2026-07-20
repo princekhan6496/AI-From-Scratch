@@ -56,9 +56,7 @@ exp_x = np.exp(x - x_max)
 This does **not** change the final probabilities because
 
 $$
-\frac{e^{x_i-c}}{\sum_j e^{x_j-c}}
-=
-\frac{e^{x_i}}{\sum_j e^{x_j}}
+\frac{e^{x_i-c}}{\sum_j e^{x_j-c}} = \frac{e^{x_i}}{\sum_j e^{x_j}}
 $$
 
 for any constant $c$.
