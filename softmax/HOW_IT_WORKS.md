@@ -9,9 +9,7 @@ The `Softmax` layer converts a vector of raw scores (called **logits**) into a p
 The softmax function is defined as
 
 $$
-\text{Softmax}(x_i)=
-\frac{e^{x_i}}
-{\sum_{j=1}^{n}e^{x_j}}
+p_i=\frac{e^{x_i}}{\sum_{j=1}^{n}e^{x_j}}
 $$
 
 where:
@@ -19,12 +17,13 @@ where:
 - $x_i$ is the input logit.
 - $e^{x_i}$ converts every input value into a positive number.
 - $\sum_{j=1}^{n}e^{x_j}$ computes the sum of all exponentiated values.
+- $p_i$ is the probability assigned to class $i$.
 - Dividing by this sum normalizes the outputs so they form a probability distribution.
 
 The outputs satisfy
 
 $$
-\sum_{i=1}^{n}\text{Softmax}(x_i)=1
+\sum_{i=1}^{n}p_i=1
 $$
 
 ---
@@ -57,11 +56,9 @@ exp_x = np.exp(x - x_max)
 This does **not** change the final probabilities because
 
 $$
-\frac{e^{x_i-c}}
-{\sum_j e^{x_j-c}}
+\frac{e^{x_i-c}}{\sum_j e^{x_j-c}}
 =
-\frac{e^{x_i}}
-{\sum_j e^{x_j}}
+\frac{e^{x_i}}{\sum_j e^{x_j}}
 $$
 
 for any constant $c$.
@@ -189,9 +186,7 @@ Unlike ReLU or Sigmoid, every softmax output depends on **every input**.
 Its derivative is
 
 $$
-\frac{\partial y_i}{\partial x_j}
-=
-y_i(\delta_{ij}-y_j)
+\frac{\partial y_i}{\partial x_j}=y_i(\delta_{ij}-y_j)
 $$
 
 where:
@@ -212,12 +207,7 @@ Instead of forming the Jacobian, the gradient can be computed as
 $$
 \frac{\partial L}{\partial x}
 =
-y
-\odot
-\left(
-g-
-(g \cdot y)
-\right)
+y\odot\left(g-(g\cdot y)\right)
 $$
 
 where:
@@ -225,7 +215,7 @@ where:
 - $g=\frac{\partial L}{\partial y}$.
 - $y$ is the softmax output.
 - $\odot$ denotes element-wise multiplication.
-- $g \cdot y$ denotes the dot product between the incoming gradient and the softmax output.
+- $g\cdot y$ denotes the dot product between the incoming gradient and the softmax output.
 
 This is implemented as
 
@@ -264,7 +254,7 @@ so that earlier layers can compute gradients for their trainable parameters.
 ## Time Complexity
 
 | Operation | Complexity |
-|-----------|------------|
+|-----------|-----------:|
 | Forward | $O(n)$ |
 | Backward | $O(n)$ |
 
