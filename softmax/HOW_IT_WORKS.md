@@ -9,7 +9,7 @@ The `Softmax` layer converts a vector of raw scores (called **logits**) into a p
 The softmax function is defined as
 
 $$
-\operatorname{Softmax}(x_i)=
+\text{Softmax}(x_i)=
 \frac{e^{x_i}}
 {\sum_{j=1}^{n}e^{x_j}}
 $$
@@ -24,7 +24,7 @@ where:
 The outputs satisfy
 
 $$
-\sum_{i=1}^{n}\operatorname{Softmax}(x_i)=1
+\sum_{i=1}^{n}\text{Softmax}(x_i)=1
 $$
 
 ---
@@ -120,7 +120,7 @@ Input logits
 [2.0, 1.0, 0.1]
 ```
 
-Subtract maximum
+Subtract the maximum value
 
 ```text
 [0.0, -1.0, -1.9]
@@ -197,7 +197,7 @@ $$
 where:
 
 - $y_i$ is the softmax output.
-- $\delta_{ij}$ is the Kronecker delta.
+- $\delta_{ij}$ is the Kronecker delta, which equals **1** if $i=j$ and **0** otherwise.
 
 This produces an $N \times N$ Jacobian matrix.
 
@@ -225,6 +225,7 @@ where:
 - $g=\frac{\partial L}{\partial y}$.
 - $y$ is the softmax output.
 - $\odot$ denotes element-wise multiplication.
+- $g \cdot y$ denotes the dot product between the incoming gradient and the softmax output.
 
 This is implemented as
 
@@ -240,7 +241,7 @@ grad_input = s * (grad_output - dot)
 
 ## Why is `backward()` Needed?
 
-The softmax layer itself has **no weights**, so nothing inside it is updated.
+The softmax layer itself has **no trainable parameters**, so nothing inside it is updated.
 
 However, the **previous layer** (for example, a Linear layer) needs gradients with respect to its outputs (the logits).
 
