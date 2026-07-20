@@ -205,9 +205,7 @@ Constructing this matrix explicitly is inefficient.
 Instead of forming the Jacobian, the gradient can be computed as
 
 $$
-\frac{\partial L}{\partial x}
-=
-y\odot\left(g-(g\cdot y)\right)
+\frac{\partial L}{\partial x} = y\odot\left(g-(g\cdot y)\right)
 $$
 
 where:
